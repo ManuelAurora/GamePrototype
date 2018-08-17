@@ -17,18 +17,18 @@ class GameViewController: UIViewController {
         
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
-        if let scene = GKScene(fileNamed: "GameScene") {
-            
+        if let scene = GKScene(fileNamed: "AdventureScene") {
+
             // Get the SKScene from the loaded GKScene
-            if let sceneNode = scene.rootNode as! GameScene? {
+             let sceneNode = scene.rootNode as! AdventureScene
                 
                 // Copy gameplay related content over to the scene
-                sceneNode.entities = scene.entities
-                sceneNode.graphs = scene.graphs
+              //  sceneNode.entities = scene.entities
+              //  sceneNode.graphs = scene.graphs
                 
                 // Set the scale mode to scale to fit the window
                 sceneNode.scaleMode = .aspectFill
-                
+            
                 // Present the scene
                 if let view = self.view as! SKView? {
                     view.presentScene(sceneNode)
@@ -40,7 +40,6 @@ class GameViewController: UIViewController {
                 }
             }
         }
-    }
 
     override var shouldAutorotate: Bool {
         return true
