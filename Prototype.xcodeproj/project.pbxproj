@@ -35,6 +35,8 @@
 		4A2808DC2126E26E007B4F69 /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2808DB2126E26E007B4F69 /* AnimationComponent.swift */; };
 		4A2808DE2126E478007B4F69 /* IdleAnimation.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4A2808DD2126E478007B4F69 /* IdleAnimation.sks */; };
 		4A2808E02126F9F2007B4F69 /* BackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2808DF2126F9F2007B4F69 /* BackgroundNode.swift */; };
+		4A2808E2212813EA007B4F69 /* CharacterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2808E1212813EA007B4F69 /* CharacterFactory.swift */; };
+		4A2808E521281484007B4F69 /* SpriteComponentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2808E421281484007B4F69 /* SpriteComponentFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		4A2808DB2126E26E007B4F69 /* AnimationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationComponent.swift; sourceTree = "<group>"; };
 		4A2808DD2126E478007B4F69 /* IdleAnimation.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = IdleAnimation.sks; sourceTree = "<group>"; };
 		4A2808DF2126F9F2007B4F69 /* BackgroundNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundNode.swift; sourceTree = "<group>"; };
+		4A2808E1212813EA007B4F69 /* CharacterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFactory.swift; sourceTree = "<group>"; };
+		4A2808E421281484007B4F69 /* SpriteComponentFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponentFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 				4A2808AE2126B6E2007B4F69 /* Info.plist */,
 				4A2808BA2126BD64007B4F69 /* Character.swift */,
 				4A2808DD2126E478007B4F69 /* IdleAnimation.sks */,
+				4A2808E321281465007B4F69 /* Factories */,
 				4A2808BC2126BDE1007B4F69 /* SpriteComponent.swift */,
 				4A2808BE2126CA1E007B4F69 /* MoveComponent.swift */,
 				4A2808DB2126E26E007B4F69 /* AnimationComponent.swift */,
@@ -139,6 +144,15 @@
 				4A2808CC2126CC5C007B4F69 /* CGFloat+Extensions.swift */,
 			);
 			path = SKTUtils;
+			sourceTree = "<group>";
+		};
+		4A2808E321281465007B4F69 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				4A2808E1212813EA007B4F69 /* CharacterFactory.swift */,
+				4A2808E421281484007B4F69 /* SpriteComponentFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +240,7 @@
 				4A2808CE2126CC5C007B4F69 /* CGVector+Extensions.swift in Sources */,
 				4A2808D62126CC5C007B4F69 /* SKTAudio.swift in Sources */,
 				4A2808A52126B6E0007B4F69 /* GameViewController.swift in Sources */,
+				4A2808E2212813EA007B4F69 /* CharacterFactory.swift in Sources */,
 				4A2808CD2126CC5C007B4F69 /* SKColor+Extensions.swift in Sources */,
 				4A2808D32126CC5C007B4F69 /* SKNode+Extensions.swift in Sources */,
 				4A2808D22126CC5C007B4F69 /* SKAction+SpecialEffects.swift in Sources */,
@@ -235,6 +250,7 @@
 				4A2808D52126CC5C007B4F69 /* SKTEffects.swift in Sources */,
 				4A2808B52126B6FD007B4F69 /* AdventureScene.swift in Sources */,
 				4A2808DC2126E26E007B4F69 /* AnimationComponent.swift in Sources */,
+				4A2808E521281484007B4F69 /* SpriteComponentFactory.swift in Sources */,
 				4A2808D72126CC5C007B4F69 /* Vector3.swift in Sources */,
 				4A2808CF2126CC5C007B4F69 /* Int+Extensions.swift in Sources */,
 			);

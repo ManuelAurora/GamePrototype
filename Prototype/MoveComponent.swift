@@ -9,10 +9,15 @@
 import SpriteKit
 import GameplayKit
 
+protocol MovementDelegate: class {
+    func characterFinishMovement()
+}
+
 final class MoveComponent: GKComponent {
     private let physicsBody: SKPhysicsBody
     private let node: SKNode
     private let speed: CGFloat
+    var delegate: MovementDelegate?
     
     init(node: SKNode, speed: CGFloat) {
         self.physicsBody = node.physicsBody!
@@ -34,7 +39,6 @@ final class MoveComponent: GKComponent {
         path.forEach { point in
             if currentPosition == .zero {
                 currentPosition = point
-                
             } else {
                 distance = (point - currentPosition).length()
                 timeInterval = TimeInterval(distance / speed)
@@ -42,6 +46,9 @@ final class MoveComponent: GKComponent {
                 currentPosition = point
             }
         }
+        actions.append(SKAction.run { [weak self] in
+            self?.delegate?.characterFinishMovement()
+        })
         node.run(.sequence(actions))
     }
 }

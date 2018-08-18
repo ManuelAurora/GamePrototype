@@ -14,7 +14,7 @@ final class SpriteComponent: GKComponent {
     
     init(texture: SKTexture, size: CGSize) {
         node = SKSpriteNode(texture: texture, color: .white, size: size)
-        node.anchorPoint = CGPoint(x: 0.5, y: 0)
+        node.anchorPoint = CGPoint(x: 0.35, y: 0)
         super.init()
     }
     

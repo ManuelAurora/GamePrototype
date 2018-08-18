@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-final class Character: GKEntity {
+class Character: GKEntity {
     lazy var node: SKSpriteNode = {
         return spriteComponent.node
     }()
@@ -30,7 +30,9 @@ final class Character: GKEntity {
         let walkAnimation = SKAction.repeatForever(.animate(with: texturesWalk, timePerFrame: 0.03))
         return AnimationComponent(node: node, animations: [.idle: idleAnimation,
                                                            .goLeft: walkAnimation,
-                                                           .goRight: walkAnimation])
+                                                           .goRight: walkAnimation,
+                                                           .goTop: walkAnimation,
+                                                           .goBottom: walkAnimation])
     }()
     
     private lazy var moveComponent: MoveComponent = {
@@ -41,12 +43,14 @@ final class Character: GKEntity {
         return spriteComponent.node.position
     }
     
-    init(imageName: String) {
-        spriteComponent = SpriteComponent(texture: SKTexture(imageNamed: imageName),
-                                          size: CGSize(width: 100, height: 100))
+    init(spriteComponent: SpriteComponent) {
+        self.spriteComponent = spriteComponent
+//        SpriteComponent(texture: SKTexture(imageNamed: imageName),
+//                                          size: CGSize(width: 128, height: 128))
         super.init()
         node.physicsBody = SKPhysicsBody(circleOfRadius: 10)
         node.physicsBody?.affectedByGravity = false
+        moveComponent.delegate = self
         addComponent(spriteComponent)
         addComponent(moveComponent)
         addComponent(animationComponent)
@@ -61,8 +65,16 @@ final class Character: GKEntity {
     }
     
     func goTo(positions: [CGPoint]) {
+        node.removeAllActions()
         moveComponent.moveBy(path: positions)
-        animationComponent.animateMovementBy(vector: node.physicsBody!.velocity)
+        let pointNormalized = (position - positions.last!).normalized()
+        let movementVector = CGVector(point: pointNormalized)
+        animationComponent.animateMovementBy(vector: movementVector)
     }
 }
 
+extension Character: MovementDelegate {
+    func characterFinishMovement() {
+        animationComponent.animate(state: .idle)
+    }
+}

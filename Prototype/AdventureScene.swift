@@ -10,8 +10,11 @@ import SpriteKit
 import GameplayKit
 
 final class AdventureScene: SKScene {
+    var characterFactory: CharacterFactory!
     private var entities: [GKEntity] = []
-    private let player = Character(imageName: "idle0001")
+    private lazy var player: Character = {
+       return characterFactory.getCharacterOf(type: .player)
+    }()
     private lazy var tileMap: SKTileMapNode = {
         return childNode(withName: "Background") as! SKTileMapNode
     }()
@@ -40,7 +43,7 @@ final class AdventureScene: SKScene {
         }
         return graph
     }()
-    
+ 
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
@@ -73,7 +76,10 @@ final class AdventureScene: SKScene {
         let touchTileColumn = tileMap.tileColumnIndex(fromPosition: touchLocation)
         let toGraphNode = tileGraph.node(atGridPosition: vector_int2(Int32(touchTileColumn),
                                                                      Int32(touchTileRow)))
-        let path = tileGraph.findPath(from: currentGraphNode!, to: toGraphNode!) as! [GKGridGraphNode]
+        guard let startGraphNode = currentGraphNode,
+            let targetGraphNode = toGraphNode,
+            let path = tileGraph.findPath(from: startGraphNode, to: targetGraphNode) as? [GKGridGraphNode]
+            else { return }
         
         print("NODE: row:\(touchTileRow) column: \(touchTileColumn)")
         

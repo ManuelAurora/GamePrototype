@@ -32,8 +32,8 @@ final class AnimationComponent: GKComponent {
     }
     
     func animate(state: StateToAnimate) {
-        guard let animation = animations[state] else { return  }
-        node.run(animation)
+        guard let animation = animations[state] else { return }
+        node.run(animation, withKey: "animation")
     }
     
     func animateMovementBy(vector: CGVector) {
@@ -50,9 +50,9 @@ final class AnimationComponent: GKComponent {
     private func animationDirectionFor(vector: CGVector) -> StateToAnimate {
         let direction: StateToAnimate = {
             if abs(vector.dy) > abs(vector.dx) {
-                return vector.dy < 0 ? .goBottom : .goTop
+                return vector.dy > 0 ? .goBottom : .goTop
             } else {
-                return vector.dx < 0 ? .goLeft : .goRight
+                return vector.dx > 0 ? .goLeft : .goRight
             }
         }()
         return direction
